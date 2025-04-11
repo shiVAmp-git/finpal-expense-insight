@@ -66,13 +66,6 @@ export function BudgetProgress() {
                       ? "bg-yellow-200" 
                       : "bg-blue-200"
                   }`}
-                  indicatorClassName={
-                    status === "critical" 
-                      ? "bg-red-500" 
-                      : status === "warning" 
-                      ? "bg-yellow-500" 
-                      : ""
-                  }
                 />
                 
                 <div className="flex justify-between text-xs text-muted-foreground">

@@ -156,6 +156,11 @@ export const budgets: Budget[] = [
   },
 ];
 
+// Get current date for saving goals
+const now = new Date();
+const currentMonth = now.getMonth();
+const currentYear = now.getFullYear();
+
 // Mock saving goals
 export const savingGoals: SavingGoal[] = [
   {
