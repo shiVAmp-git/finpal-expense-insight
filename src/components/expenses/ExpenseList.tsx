@@ -20,12 +20,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { categories, formatCurrency, formatDate, getCategoryById, transactions } from "@/utils/mockData";
-import { ArrowUpDown, MoreHorizontal, Search } from "lucide-react";
+import { ArrowUpDown, Download, MoreHorizontal, Search } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 export function ExpenseList() {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+  const { toast } = useToast();
   
   // Filter and sort transactions
   const filteredTransactions = transactions
@@ -50,6 +52,58 @@ export function ExpenseList() {
       return sortOrder === "desc" ? dateB - dateA : dateA - dateB;
     })
     .slice(0, 10); // Limit to 10 items for demo
+
+  // Export data functions
+  const exportToCSV = () => {
+    const csvHeader = 'Date,Description,Category,Amount,Type\n';
+    const csvRows = filteredTransactions.map(transaction => {
+      const category = getCategoryById(transaction.categoryId);
+      const amount = transaction.type === 'income' ? transaction.amount : -transaction.amount;
+      return `${formatDate(transaction.date)},${transaction.description},${category?.name || 'Uncategorized'},${amount},${transaction.type}`;
+    }).join('\n');
+    
+    const csvContent = `${csvHeader}${csvRows}`;
+    downloadFile(csvContent, 'expenses.csv', 'text/csv');
+    
+    toast({
+      title: "Export successful",
+      description: "Your expenses have been exported as CSV",
+    });
+  };
+  
+  const exportToJSON = () => {
+    const jsonData = filteredTransactions.map(transaction => {
+      const category = getCategoryById(transaction.categoryId);
+      return {
+        id: transaction.id,
+        date: transaction.date,
+        description: transaction.description,
+        category: category?.name || 'Uncategorized',
+        amount: transaction.amount,
+        type: transaction.type
+      };
+    });
+    
+    const jsonContent = JSON.stringify(jsonData, null, 2);
+    downloadFile(jsonContent, 'expenses.json', 'application/json');
+    
+    toast({
+      title: "Export successful",
+      description: "Your expenses have been exported as JSON",
+    });
+  };
+  
+  const downloadFile = (content: string, fileName: string, contentType: string) => {
+    const blob = new Blob([content], { type: contentType });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <div>
@@ -87,6 +141,25 @@ export function ExpenseList() {
         >
           <ArrowUpDown className="h-4 w-4" />
         </Button>
+        
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline">
+              <Download className="mr-2 h-4 w-4" />
+              Export
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Export Format</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={exportToCSV}>
+              CSV File
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={exportToJSON}>
+              JSON File
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       
       <div className="rounded-md border">
