@@ -46,7 +46,7 @@ export default function LoginForm() {
           title: "Welcome back!",
           description: "You've been successfully logged in.",
         });
-        navigate("/");
+        navigate("/dashboard");
       }
     } catch (err) {
       toast({
@@ -71,7 +71,6 @@ export default function LoginForm() {
             <Input
               id="email"
               type="email"
-              placeholder="you@example.com"
               className="h-12 bg-gray-50/50 border-gray-200 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -88,7 +87,6 @@ export default function LoginForm() {
               <Input
                 id="password"
                 type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
                 className="h-12 bg-gray-50/50 border-gray-200 focus:border-blue-500 focus:ring-blue-500 pr-12 transition-all duration-200"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

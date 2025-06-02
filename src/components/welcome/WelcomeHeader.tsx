@@ -12,17 +12,17 @@ export default function WelcomeHeader() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="p-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg">
-              <CreditCard className="h-6 w-6 text-white" />
+          <Link to="/" className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity">
+            <div className="p-1.5 md:p-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg">
+              <CreditCard className="h-5 w-5 md:h-6 md:w-6 text-white" />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              FinPal
+            <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              ExpenseTracker Pro
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             <a href="#features" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
               Features
             </a>
@@ -35,14 +35,14 @@ export default function WelcomeHeader() {
           </nav>
 
           {/* Desktop Auth Buttons */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3 lg:gap-4">
             <Link to="/login">
-              <Button variant="ghost" className="font-medium">
+              <Button variant="ghost" className="font-medium text-sm lg:text-base">
                 Sign In
               </Button>
             </Link>
             <Link to="/signup">
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 font-medium">
+              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 font-medium text-sm lg:text-base">
                 Get Started
               </Button>
             </Link>
