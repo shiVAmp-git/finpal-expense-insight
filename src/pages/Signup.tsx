@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -127,18 +126,14 @@ export default function Signup() {
                 <User className="h-4 w-4" />
                 Full Name
               </Label>
-              <div className="relative">
-                <User className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input
-                  id="fullName"
-                  type="text"
-                  placeholder=""
-                  className="pl-9"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  required
-                />
-              </div>
+              <Input
+                id="fullName"
+                type="text"
+                placeholder=""
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required
+              />
             </div>
 
             <div className="space-y-2">
@@ -146,18 +141,14 @@ export default function Signup() {
                 <Mail className="h-4 w-4" />
                 Email
               </Label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder=""
-                  className="pl-9"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
+              <Input
+                id="email"
+                type="email"
+                placeholder=""
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
             </div>
 
             <div className="space-y-2">
@@ -165,18 +156,14 @@ export default function Signup() {
                 <Phone className="h-4 w-4" />
                 Phone Number
               </Label>
-              <div className="relative">
-                <Phone className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input
-                  id="phoneNumber"
-                  type="tel"
-                  placeholder=""
-                  className="pl-9"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  required
-                />
-              </div>
+              <Input
+                id="phoneNumber"
+                type="tel"
+                placeholder=""
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                required
+              />
             </div>
             
             <div className="space-y-2">
@@ -185,12 +172,11 @@ export default function Signup() {
                 Password
               </Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder=""
-                  className="pl-9 pr-9"
+                  className="pr-9"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -217,12 +203,11 @@ export default function Signup() {
                 Confirm Password
               </Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="confirmPassword"
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder=""
-                  className="pl-9 pr-9"
+                  className="pr-9"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
