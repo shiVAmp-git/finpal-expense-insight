@@ -55,7 +55,7 @@ export default function HeroSection() {
           <Link to="/login" className="w-full sm:w-auto">
             <Button variant="outline" size="lg" className="w-full sm:w-auto h-12 md:h-14 px-6 md:px-8 bg-white/80 backdrop-blur-sm border-gray-200 hover:bg-white/90 text-base md:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
               <LogIn className="mr-2 h-4 w-4 md:h-5 md:w-5" />
-              Watch Demo
+              Login
             </Button>
           </Link>
         </div>
