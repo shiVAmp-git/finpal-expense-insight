@@ -108,7 +108,9 @@ export default function Signup() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%234f46e5" fill-opacity="0.03"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+      <div className="absolute inset-0 opacity-40" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234f46e5' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      }}></div>
       
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-20 animate-pulse"></div>
@@ -148,7 +150,7 @@ export default function Signup() {
                   <Input
                     id="fullName"
                     type="text"
-                    placeholder="Enter your full name"
+                    placeholder=""
                     className="h-12 bg-gray-50/50 border-gray-200 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
@@ -164,7 +166,7 @@ export default function Signup() {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="you@example.com"
+                    placeholder=""
                     className="h-12 bg-gray-50/50 border-gray-200 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -180,7 +182,7 @@ export default function Signup() {
                   <Input
                     id="phoneNumber"
                     type="tel"
-                    placeholder="+1 (555) 123-4567"
+                    placeholder=""
                     className="h-12 bg-gray-50/50 border-gray-200 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
@@ -197,7 +199,7 @@ export default function Signup() {
                     <Input
                       id="password"
                       type={showPassword ? "text" : "password"}
-                      placeholder="Create a strong password"
+                      placeholder=""
                       className="h-12 bg-gray-50/50 border-gray-200 focus:border-blue-500 focus:ring-blue-500 pr-12 transition-all duration-200"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
@@ -228,7 +230,7 @@ export default function Signup() {
                     <Input
                       id="confirmPassword"
                       type={showConfirmPassword ? "text" : "password"}
-                      placeholder="Confirm your password"
+                      placeholder=""
                       className="h-12 bg-gray-50/50 border-gray-200 focus:border-blue-500 focus:ring-blue-500 pr-12 transition-all duration-200"
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
