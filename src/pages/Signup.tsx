@@ -123,13 +123,16 @@ export default function Signup() {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="fullName">Full Name</Label>
+              <Label htmlFor="fullName" className="flex items-center gap-2">
+                <User className="h-4 w-4" />
+                Full Name
+              </Label>
               <div className="relative">
                 <User className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="fullName"
                   type="text"
-                  placeholder="John Doe"
+                  placeholder=""
                   className="pl-9"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
@@ -139,13 +142,16 @@ export default function Signup() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                Email
+              </Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="email"
                   type="email"
-                  placeholder="name@example.com"
+                  placeholder=""
                   className="pl-9"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -155,13 +161,16 @@ export default function Signup() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="phoneNumber">Phone Number</Label>
+              <Label htmlFor="phoneNumber" className="flex items-center gap-2">
+                <Phone className="h-4 w-4" />
+                Phone Number
+              </Label>
               <div className="relative">
                 <Phone className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="phoneNumber"
                   type="tel"
-                  placeholder="+1 (555) 123-4567"
+                  placeholder=""
                   className="pl-9"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
@@ -171,13 +180,16 @@ export default function Signup() {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" className="flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                Password
+              </Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="••••••••"
+                  placeholder=""
                   className="pl-9 pr-9"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -200,13 +212,16 @@ export default function Signup() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Label htmlFor="confirmPassword" className="flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                Confirm Password
+              </Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="confirmPassword"
                   type={showConfirmPassword ? "text" : "password"}
-                  placeholder="••••••••"
+                  placeholder=""
                   className="pl-9 pr-9"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
