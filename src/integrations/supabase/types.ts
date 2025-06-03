@@ -14,19 +14,61 @@ export type Database = {
           created_at: string
           full_name: string | null
           id: string
+          phone_number: string | null
           updated_at: string
         }
         Insert: {
           created_at?: string
           full_name?: string | null
           id: string
+          phone_number?: string | null
           updated_at?: string
         }
         Update: {
           created_at?: string
           full_name?: string | null
           id?: string
+          phone_number?: string | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      transactions: {
+        Row: {
+          amount: number
+          category_id: string
+          created_at: string
+          description: string
+          id: string
+          location: string | null
+          transaction_date: string
+          transaction_type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          category_id: string
+          created_at?: string
+          description: string
+          id?: string
+          location?: string | null
+          transaction_date?: string
+          transaction_type: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          category_id?: string
+          created_at?: string
+          description?: string
+          id?: string
+          location?: string | null
+          transaction_date?: string
+          transaction_type?: string
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }

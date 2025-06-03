@@ -2,7 +2,7 @@
 import { Header } from "@/components/layout/Header";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { ExpenseForm } from "@/components/expenses/ExpenseForm";
-import { ExpenseList } from "@/components/expenses/ExpenseList";
+import { RealExpenseList } from "@/components/expenses/RealExpenseList";
 import { BudgetProgress } from "@/components/budget/BudgetProgress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -24,7 +24,7 @@ export default function Expenses() {
             <TabsContent value="transactions" className="space-y-6">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-2">
-                  <ExpenseList />
+                  <RealExpenseList />
                 </div>
                 
                 <div className="lg:col-span-1">

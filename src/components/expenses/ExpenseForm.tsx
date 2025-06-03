@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { categories } from "@/utils/mockData";
-import { useToast } from "@/hooks/use-toast";
 import { Calendar as CalendarIcon, DollarSign, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
@@ -22,6 +21,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { format } from "date-fns";
+import { useTransactions } from "@/hooks/useTransactions";
 
 export function ExpenseForm() {
   const [amount, setAmount] = useState("");
@@ -30,33 +30,39 @@ export function ExpenseForm() {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [location, setLocation] = useState("");
   const [type, setType] = useState<"expense" | "income">("expense");
-  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const { addTransaction } = useTransactions();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     // Simple validation
     if (!amount || !description || !category || !date) {
-      toast({
-        title: "Error",
-        description: "Please fill in all required fields",
-        variant: "destructive",
-      });
       return;
     }
 
-    // For demo purposes, we're just showing a success toast
-    toast({
-      title: "Transaction saved",
-      description: `Your ${type} has been recorded successfully.`,
+    setIsSubmitting(true);
+
+    const success = await addTransaction({
+      amount: parseFloat(amount),
+      description,
+      category_id: category,
+      transaction_type: type,
+      transaction_date: format(date, 'yyyy-MM-dd'),
+      location: location || undefined,
     });
 
-    // Reset form
-    setAmount("");
-    setDescription("");
-    setCategory("");
-    setDate(new Date());
-    setLocation("");
+    if (success) {
+      // Reset form
+      setAmount("");
+      setDescription("");
+      setCategory("");
+      setDate(new Date());
+      setLocation("");
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -85,10 +91,12 @@ export function ExpenseForm() {
               <Input 
                 id="amount"
                 type="number"
+                step="0.01"
                 placeholder="0.00" 
                 className="pl-9"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
+                required
               />
             </div>
           </div>
@@ -97,7 +105,7 @@ export function ExpenseForm() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div className="space-y-2">
             <Label htmlFor="category">Category</Label>
-            <Select value={category} onValueChange={setCategory}>
+            <Select value={category} onValueChange={setCategory} required>
               <SelectTrigger>
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
@@ -145,6 +153,7 @@ export function ExpenseForm() {
             placeholder="Enter transaction details"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            required
           />
         </div>
         
@@ -163,11 +172,25 @@ export function ExpenseForm() {
         </div>
         
         <div className="flex justify-end gap-3 mt-6">
-          <Button variant="outline" type="button">
-            Cancel
+          <Button 
+            variant="outline" 
+            type="button"
+            onClick={() => {
+              setAmount("");
+              setDescription("");
+              setCategory("");
+              setDate(new Date());
+              setLocation("");
+            }}
+          >
+            Clear
           </Button>
-          <Button type="submit" className="primary-gradient">
-            Save Transaction
+          <Button 
+            type="submit" 
+            className="primary-gradient"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Saving..." : "Save Transaction"}
           </Button>
         </div>
       </form>

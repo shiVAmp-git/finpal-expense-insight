@@ -2,7 +2,7 @@
 import { Header } from "@/components/layout/Header";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { DashboardOverview } from "@/components/dashboard/DashboardOverview";
-import { ExpenseList } from "@/components/expenses/ExpenseList";
+import { RealExpenseList } from "@/components/expenses/RealExpenseList";
 
 export default function Dashboard() {
   return (
@@ -17,7 +17,7 @@ export default function Dashboard() {
           
           <div className="mt-8">
             <h2 className="text-lg font-semibold mb-4">Recent Transactions</h2>
-            <ExpenseList />
+            <RealExpenseList />
           </div>
         </div>
       </div>
