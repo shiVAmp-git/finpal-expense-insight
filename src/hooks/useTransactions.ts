@@ -43,7 +43,8 @@ export function useTransactions() {
         return;
       }
 
-      setTransactions(data || []);
+      // Type assertion to ensure proper typing
+      setTransactions((data || []) as Transaction[]);
     } catch (error) {
       console.error('Error:', error);
       toast({
